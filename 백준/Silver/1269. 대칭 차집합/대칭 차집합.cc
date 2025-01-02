@@ -1,29 +1,24 @@
 #include <iostream>
-#include <map>
+#include <set>
 using namespace std;
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
     
     int n, m, k;
-    map<int, int> mapp;
+    set<int> uni, inter;
     
     cin>>n>>m;
     while(n--){
         cin>>k;
-        mapp[k]=1; //a-b
+        uni.insert(k);
     }
     
     while(m--){
         cin>>k;
-        if(mapp.find(k) != mapp.end()) mapp[k] = 3; //a∩b
-        else mapp[k] = 2; //b-a
+        if(uni.find(k)!=uni.end()) inter.insert(k);
+        uni.insert(k);
     }
     
-    int total{0}, cnt{0};
-    for(auto i=mapp.begin();i!=mapp.end();i++){
-        if(i->second==3) cnt++;
-        total++;
-    }
-    cout<<total-cnt; //n(a-b)+n(b-a) == n(a∪b)-n(a∩b)
+    cout<<uni.size() - inter.size();
 }
