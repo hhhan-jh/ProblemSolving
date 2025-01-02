@@ -11,13 +11,13 @@ int main(){
     cin>>n>>m;
     while(n--){
         cin>>k;
-        mapp[k]=1;
+        mapp[k]=1; //a-b
     }
     
     while(m--){
         cin>>k;
-        if(mapp.find(k) != mapp.end()) mapp[k] = 3;
-        else mapp[k] = 2;
+        if(mapp.find(k) != mapp.end()) mapp[k] = 3; //a∩b
+        else mapp[k] = 2; //b-a
     }
     
     int total{0}, cnt{0};
@@ -25,5 +25,5 @@ int main(){
         if(i->second==3) cnt++;
         total++;
     }
-    cout<<total-cnt;
+    cout<<total-cnt; //n(a-b)+n(b-a) == n(a∪b)-n(a∩b)
 }
